@@ -14,6 +14,7 @@ def compute_entropy_loss(logits):
 
 
 def compute_policy_gradient_loss(logits, actions, advantages):
+    # print(torch.flatten(logits, 0, 1).shape,torch.flatten(actions, 0, 1).shape)
     cross_entropy = F.nll_loss(
         F.log_softmax(torch.flatten(logits, 0, 1), dim=-1),
         target=torch.flatten(actions, 0, 1),
