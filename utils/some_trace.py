@@ -115,7 +115,7 @@ def v_trace_from_importance_weights(
     with torch.no_grad():
         rhos = torch.exp(log_rhos)
         if clip_rho_threshold is not None:
-            clipped_rhos = torch.clamp(rhos, max=clip_rho_threshold)
+            clipped_rhos = torch.clamp(rhos, max=clip_rho_threshold)#, min=0.8)
         else:
             clipped_rhos = rhos
 
