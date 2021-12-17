@@ -284,9 +284,9 @@ class Conv2d_MinAtar(nn.Module):
         y = F.relu(self.conv1(x))
         y = y.view(y.shape[0], -1)
         y = F.relu(self.fc2(y))
-        # y_f = y.softmax(dim=-1)
-        # y_f = Bernoulli(y_f).sample()
-        return y  # + y_f - y.detach()
+        y_f = y.sigmoid(dim=-1)
+        y_f = Bernoulli(y_f).sample()
+        return y  + y_f - y.detach()
 
 
 class MiniAtariPolicy(nn.Module):
