@@ -23,9 +23,9 @@ RUN apt update -y && DEBIAN_FRONTEND=noninteractive apt install -y --allow-unaut
 RUN wget https://mujoco.org/download/mujoco210-linux-x86_64.tar.gz -O mujoco.tar.gz && tar -xvf mujoco.tar.gz \
     && mkdir ~/.mujoco && cp -r mujoco210 ~/.mujoco/
 ENV LD_LIBRARY_PATH /root/.mujoco/mujoco210/bin:${LD_LIBRARY_PATH}
-RUN pip install -i https://pypi.tuna.tsinghua.edu.cn/simple gym-super-mario-bros==7.3.2 \
+RUN pip install  gym-super-mario-bros==7.3.2 \
     opencv-python future pyglet gym-minigrid -U 'mujoco-py<2.2,>=2.1' gym[atari,box2d] procgen \
-    pathlib ray[default] pygame
+    pathlib ray[default] pygame mujoco
 RUN wget http://www.atarimania.com/roms/Roms.rar -O roms.rar && unrar x roms.rar \
     && ale-import-roms ROMS/ > ale.out
 RUN python -c 'import mujoco_py; import gym'
